@@ -1,0 +1,203 @@
+.mc{
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+    flex-direction: column;
+    width: 720px;
+    height: 500px;
+    min-width: 718px;
+}
+.mc h5{
+    font-family:"Whitefriars NF W01 Regular";
+    font-weight: 180;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mc span{
+    position: relative;
+    margin-bottom: 30px;
+}
+.mc span i{
+    font-size: 12px;
+    /* height: 12px;
+    width: 12px; */
+    color: red;
+}
+#nameWarn, #addressWarn, #ratingWarn, #typeWarn, #picWarn,
+#firstNameWarn,
+#lastNameWarn,
+#genderWarn,
+#ageWarn{
+    /* display: none; */
+    position: absolute;
+    font-size: 12px;
+    left:225px;
+    top:35px;
+}
+#nameWarnmsg, #addressWarnmsg, #ratingWarnmsg, #typeWarnmsg, #picWarnmsg,
+#firstNameRequiredWarnmsg, #firstNameInvalidWarnmsg,
+#lastNameRequiredWarnmsg, #lastNameInvalidWarnmsg,
+#genderInvalidWarnmsg,
+#ageInvalidWarnmsg, #ageInvalidTypeWarnmsg{
+    /* display: none; */
+    position: absolute;
+    font-size: 11px;
+    color: red;
+    left:240px;
+    top:34px;
+}
+#picWarn{
+    top:42px;
+}
+#picWarnmsg{
+    top:41.5px;
+}
+.mc span label{
+    display: inline-flex;
+    box-sizing: border-box;
+    width: 80px;
+    margin-left: 100px;
+    margin-right: 40px;
+}
+.mc span label{
+    cursor: pointer;
+}
+.mc span input, .mc span select, #srcbar, .mc span div{
+    display: inline-block;
+    position: relative;
+    width: 400px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-family: serif;
+    font-size:smaller;
+    background-color: rgb(248, 239, 225);
+}
+.mc span input:focus{
+    border-top: 1.5px solid black;
+    border-left: 1.5px solid black;
+}
+.mc span select{
+    width: 440px;
+}
+.mc span input, .mc span select, #srcbar, .mc span div{
+    border-top: 1.5px solid rgb(124, 122, 122);
+    border-left: 1.5px solid rgb(124, 122, 122);
+    border-bottom: 0px;
+    border-right: 0px;
+    border-radius: 8px;
+    outline: none;
+}
+.mc span div{
+    padding: 0px;
+    padding-bottom: 0px;
+    width: auto;
+    display: flex;
+    position: relative;
+    /* border: 1.5px solid red; */
+}
+#brwsbtn{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    position: absolute;
+    left: 20px;
+    top:10px;
+    width: 55px;
+    padding-top: 2px;
+    padding-left: 8px;
+    font-size: 9px;
+    border: 1.5px solid rgb(160, 159, 159);
+    background-color: rgb(236, 228, 217);
+}
+#brwsfilenamecontainer{
+    display: flex;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    top: 14px;
+    left: 79px;
+    width: auto;
+    height: auto;
+}
+#srcbar{
+    font-size: 10px;
+    width: 300px;
+}
+#ippic{
+    /* border: 1.5px solid red; */
+    /* opacity: 0; */
+    display: inline;
+}
+/* #ippic{
+    border-top: 1.5px solid rgb(255, 109, 47);
+    border-left: 1.5px solid rgb(255, 109, 47);
+} */
+#ippic:focus{
+    border-top: 1.5px solid black;
+    border-left: 1.5px solid black;
+}
+input[type="file"]::file-selector-button{
+    cursor: pointer;
+}
+
+#ipage::-webkit-inner-spin-button{
+    display: none;
+}
+
+.bc{
+    display: flex;
+    position: relative;
+    height: 50px;
+    float: right;
+}
+.bc button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    top:5px;
+    width: 70px;
+    height: 35px;
+    border-radius: 5px;
+}
+.bc a {
+    display: flex;
+    position: absolute;
+    right: 85px;
+    top:80px;
+    color: rgb(109, 193, 227);
+    font-family: "Whitefriars NF W01 Regular";
+    font-size: 9.5px;
+    /* font-weight: bold; */
+}
+.sbbtn{
+    right: 85px ;
+    background-color: rgb(74, 244, 74);
+    border-bottom: 1.5px solid rgb(143, 138, 138);
+    border-right: 1.5px solid rgb(143, 138, 138);
+    border-top: 1.5px solid rgb(202, 202, 252);
+    border-left: 1.5px solid rgb(202, 202, 252);
+}
+.sbbtnEn{
+    background-color: rgb(13, 211, 13);
+}
+.sbbtnEn:hover{
+    cursor: pointer;
+}
+.rsbtn:hover{
+    background-color: rgb(237, 154, 0);
+}
+.rsbtn{
+    right: 170px ;
+    background-color: rgb(244, 179, 60);
+    border-bottom: 1.5px solid rgb(143, 138, 138);
+    border-right: 1.5px solid rgb(143, 138, 138);
+    border-top: 1.5px solid rgb(251, 232, 235);
+    border-left: 1.5px solid rgb(251, 232, 235);
+}
+#male:focus, #female:focus{
+    outline: 2px solid rgb(84, 134, 240);
+}

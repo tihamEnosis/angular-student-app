@@ -1,0 +1,34 @@
+<!-- <tr [ngClass]="(i===1)?'bgCpnk':''"> -->
+    <td>
+        <div class="tdc">
+            {{student.firstName}}
+        </div>
+    </td>
+    <td>
+      <div class="tdc">
+          {{student.lastName}}
+      </div>
+    </td>
+    <td>
+        <div class="tdc">
+            {{student.gender}}
+        </div>
+    </td>
+    <td>
+        <div class="tdc">
+            {{student.age}}
+        </div>
+    </td>
+    <td>
+        <div class="tdc">
+            <img src="{{student.profilePicture}}" alt="">
+        </div>
+    </td>
+    <td>
+        <div class="tdc">
+            <a routerLink="/detail/{{student.id}}" class="updbtn">
+                Details
+            </a>
+        </div>
+    </td>
+<!-- </tr> -->

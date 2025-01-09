@@ -1,0 +1,39 @@
+<div *ngIf="student; else notfound">
+    <div class="tdc">
+        <img src={{student.profilePicture}} alt="">
+    </div>
+    <p class="nmP" style="width: auto;">{{student.firstName}}&nbsp;{{student.lastName}}</p>
+    <div class="info">
+        <span class="mb10">
+            <label class="nmP" for="nmF">First Name:&nbsp;</label>
+            <input class="ip" type="text" id="nmF" disabled value={{student.firstName}}>
+        </span>
+        <span class="mb10">
+            <label class="nmP" for="nmL">Last Name:&nbsp;</label>
+            <input class="ip" type="text" id="nmL" disabled value={{student.lastName}}>
+        </span>
+        <span class="mb10">
+            <label class="nmP" for="gnD">Gender:&nbsp;</label>
+            <input class="ip" type="text" id="gnD" disabled value={{student.gender}}>
+        </span>
+        <span class="mb10">
+            <label class="nmP" for="ag">Age:&nbsp;</label>
+            <input class="ip" type="text" id="ag" disabled value={{student.age}}>
+        </span>
+    </div>
+    <div class="tdc" style="flex-direction: row;">
+        <a routerLink="/create" [queryParams]="{ id:student.id}" class="updbtn">
+            Update
+        </a>
+        <a (click)="deleteStudent(student.id)" class="delbtn">
+            Delete
+        </a>
+        <a (click)="goBack()" class="updbtn">
+            Back
+        </a>
+    </div>
+</div>
+
+<ng-template #notfound>
+    <app-page-not-found></app-page-not-found>
+</ng-template>
