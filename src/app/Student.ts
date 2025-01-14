@@ -7,6 +7,7 @@ export interface Student{
     picName: string;
     id: string;
 }
+
 export interface SrtData{
     firstName: number,
     lastName: number,
