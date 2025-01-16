@@ -1,0 +1,39 @@
+<div class="lc">
+    <kendo-textbox type="text" (keyup)="onSrc($event)" [formControl]="srcName" id="srcbar"
+        style="font-family:Arial, Helvetica, sans-serif;" placeholder="Enter name to search"></kendo-textbox>
+
+    <kendo-grid [height]="700" [sortable]="true" [sort]="defaultSort" class="tdc marginTop15px" [kendoGridBinding]="students"
+        [pageable]="true" [pageSize]="10">
+
+        <kendo-grid-column [width]="100" field="firstName" title="First Name">
+        </kendo-grid-column>
+
+        <kendo-grid-column [width]="100" field="lastName" title="Last Name">
+        </kendo-grid-column>
+
+        <kendo-grid-column [width]="100" field="gender" title="Gender">
+        </kendo-grid-column>
+
+        <kendo-grid-column [width]="100" field="age" title="Age">
+        </kendo-grid-column>
+
+        <kendo-grid-column title="Picture" field="path">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <img style="width: 220px; max-height: 160px;" src="http://localhost:8080/{{dataItem.path}}" alt="">
+            </ng-template>
+        </kendo-grid-column>
+
+        <kendo-grid-column [width]="120" title="Action">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <button style="width: 80px;" kendoButton routerLink="/detail/{{dataItem.id}}" themeColor="info">
+                    Details
+                </button>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+
+    <button kendoButton routerLink="/create" themeColor="tertiary" class="crnwtp"
+        style="font-family: Arial, Helvetica, sans-serif;">
+        Create New Student
+    </button>
+</div>

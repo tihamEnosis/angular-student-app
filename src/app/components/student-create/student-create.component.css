@@ -20,8 +20,6 @@
 }
 .mc span i{
     font-size: 12px;
-    /* height: 12px;
-    width: 12px; */
     color: red;
 }
 #nameWarn, #addressWarn, #ratingWarn, #typeWarn, #picWarn,
@@ -29,7 +27,6 @@
 #lastNameWarn,
 #genderWarn,
 #ageWarn{
-    /* display: none; */
     position: absolute;
     font-size: 12px;
     left:225px;
@@ -40,7 +37,6 @@
 #lastNameRequiredWarnmsg, #lastNameInvalidWarnmsg,
 #genderInvalidWarnmsg,
 #ageInvalidWarnmsg, #ageInvalidTypeWarnmsg{
-    /* display: none; */
     position: absolute;
     font-size: 11px;
     color: red;
@@ -63,7 +59,7 @@
 .mc span label{
     cursor: pointer;
 }
-.mc span input, .mc span select, #srcbar, .mc span div{
+.mc span input, .mc span select, .mc span div{
     display: inline-block;
     position: relative;
     width: 400px;
@@ -82,7 +78,7 @@
 .mc span select{
     width: 440px;
 }
-.mc span input, .mc span select, #srcbar, .mc span div{
+.mc span input, .mc span select, .mc span div{
     border-top: 1.5px solid rgb(124, 122, 122);
     border-left: 1.5px solid rgb(124, 122, 122);
     border-bottom: 0px;
@@ -96,7 +92,6 @@
     width: auto;
     display: flex;
     position: relative;
-    /* border: 1.5px solid red; */
 }
 #brwsbtn{
     font-family: Arial, Helvetica, sans-serif;
@@ -121,23 +116,16 @@
     width: auto;
     height: auto;
 }
-#srcbar{
-    font-size: 10px;
-    width: 300px;
-}
+
 #ippic{
-    /* border: 1.5px solid red; */
-    /* opacity: 0; */
     display: inline;
 }
-/* #ippic{
-    border-top: 1.5px solid rgb(255, 109, 47);
-    border-left: 1.5px solid rgb(255, 109, 47);
-} */
+
 #ippic:focus{
     border-top: 1.5px solid black;
     border-left: 1.5px solid black;
 }
+
 input[type="file"]::file-selector-button{
     cursor: pointer;
 }
@@ -153,15 +141,10 @@ input[type="file"]::file-selector-button{
     float: right;
 }
 .bc button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
     position: absolute;
     top:5px;
     width: 70px;
     height: 35px;
-    border-radius: 5px;
 }
 .bc a {
     display: flex;
@@ -171,15 +154,9 @@ input[type="file"]::file-selector-button{
     color: rgb(109, 193, 227);
     font-family: "Whitefriars NF W01 Regular";
     font-size: 9.5px;
-    /* font-weight: bold; */
 }
-.sbbtn{
+.submitButton{
     right: 85px ;
-    background-color: rgb(74, 244, 74);
-    border-bottom: 1.5px solid rgb(143, 138, 138);
-    border-right: 1.5px solid rgb(143, 138, 138);
-    border-top: 1.5px solid rgb(202, 202, 252);
-    border-left: 1.5px solid rgb(202, 202, 252);
 }
 .sbbtnEn{
     background-color: rgb(13, 211, 13);
@@ -200,4 +177,29 @@ input[type="file"]::file-selector-button{
 }
 #male:focus, #female:focus{
     outline: 2px solid rgb(84, 134, 240);
+}
+
+
+kendo-formfield label:hover{
+    cursor: pointer;
+}
+
+.kendoFormFieldContainer {
+    display: block;
+    height: 48px;
+}
+
+.paddingTop10px{
+    padding-top: 10px;
+}
+.paddingLeftRight50px{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.kendoFormFieldofBrowseButtonPadding{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
 }

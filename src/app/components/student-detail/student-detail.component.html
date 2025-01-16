@@ -1,0 +1,44 @@
+<div *ngIf="student; else notfound">
+    <div class="detailsPagetdc">
+        <img src='http://localhost:8080/{{student.path}}' alt="">
+    </div>
+    <p class="detailsPageLabel">{{student.firstName}}&nbsp;{{student.lastName}}</p>
+    <div class="infoContainer">
+        <span>
+            <kendo-label class="detailsPageLabel" for="nmF">First Name:&nbsp;</kendo-label>
+            <kendo-textbox class="detailsPageTextBox" type="text" id="nmF" [disabled]="true"
+                value={{student.firstName}}></kendo-textbox>
+        </span>
+        <span>
+            <kendo-label class="detailsPageLabel" for="nmL">Last Name:&nbsp;</kendo-label>
+            <kendo-textbox class="detailsPageTextBox" type="text" id="nmL" [disabled]="true"
+                value={{student.lastName}}></kendo-textbox>
+        </span>
+        <span>
+            <kendo-label class="detailsPageLabel" for="gnD">Gender:&nbsp;</kendo-label>
+            <kendo-textbox class="detailsPageTextBox" type="text" id="gnD" [disabled]="true"
+                value={{student.gender}}></kendo-textbox>
+        </span>
+        <span>
+            <kendo-label class="detailsPageLabel" for="ag">Age:&nbsp;</kendo-label>
+            <kendo-textbox class="detailsPageTextBox" type="text" id="ag" [disabled]="true"
+                value={{student.age}}></kendo-textbox>
+        </span>
+    </div>
+    <div class="detailsPagetdc" style="flex-direction: row;">
+        <button kendoButton routerLink="/create" [queryParams]="{ id:student.id}" themeColor="tertiary"
+            class="detailsPageButton">
+            Update
+        </button>
+        <button kendoButton (click)="deleteStudent(student.id.toString())" themeColor="primary" class="detailsPageButton">
+            Delete
+        </button>
+        <button kendoButton (click)="goBack()" themeColor="secondary" class="detailsPageButton">
+            Back
+        </button>
+    </div>
+</div>
+
+<ng-template #notfound>
+    <app-page-not-found></app-page-not-found>
+</ng-template>

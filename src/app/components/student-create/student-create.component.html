@@ -1,0 +1,71 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="mc k-form-horizontal">
+    <h5>Add a new Student</h5>
+
+    <div class="kendoFormFieldContainer">
+        <kendo-formfield orientation="horizontal" class="paddingLeftRight50px">
+            <label kendoLabel for="ipFirstname">First Name:</label>
+            <input kendoTextBox formControlName="firstName" id="ipFirstname" type="text" autocomplete="off" />
+            <kendo-formerror>
+                {{(firstName?.errors?.['invalidName'])?'Error: Invalid First Name': 'Error: First Name Required'}}
+            </kendo-formerror>
+        </kendo-formfield>
+    </div>
+
+    <div class="kendoFormFieldContainer paddingTop10px">
+        <kendo-formfield orientation="horizontal" class="paddingLeftRight50px">
+            <label kendoLabel for="ipLastName">Last Name:</label>
+            <input kendoTextBox formControlName="lastName" id="ipLastName" type="text" autocomplete="off" />
+            <kendo-formerror>
+                {{(lastName?.errors?.['invalidName'])?'Error: Invalid Last Name': 'Error: Last Name required'}}
+            </kendo-formerror>
+        </kendo-formfield>
+    </div>
+
+    <div class="kendoFormFieldContainer paddingTop10px">
+        <kendo-formfield orientation="horizontal" class="paddingLeftRight50px">
+            <kendo-label class="k-label" [for]="ipAge" text="Age:"></kendo-label>
+            <kendo-numerictextbox formControlName="age" #ipAge format="n" [autoCorrect]="true" [min]="1" [max]="120"
+                [spinners]="false" [step]="1"></kendo-numerictextbox>
+            <kendo-formerror>
+                {{(ageGetter?.errors?.['ageReq'])?'Error: Age required':'Error: Invalid Age'}}
+            </kendo-formerror>
+        </kendo-formfield>
+    </div>
+
+    <div class="kendoFormFieldContainer paddingTop10px">
+        <kendo-formfield orientation="horizontal" showHints="initial" class="paddingLeftRight50px">
+            <label (click)="putFocusOnGenderField()" class="k-label">Gender:</label>
+
+            <ul class="k-radio-list k-list-horizontal">
+                <li class="k-radio-item" style="margin-left: 10%;">
+                    <input type="radio" #male id="maleGenderInputField" value="Male" kendoRadioButton
+                        formControlName="gender" />
+                    <kendo-label class="k-radio-label" [for]="male" text="Male"></kendo-label>
+                </li>
+
+                <li class="k-radio-item" style="margin-left: 10%;">
+                    <input type="radio" #female value="Female" kendoRadioButton formControlName="gender" />
+                    <kendo-label class="k-radio-label" [for]="female" text="Female"></kendo-label>
+                </li>
+            </ul>
+            <kendo-formerror>Error: This field is required</kendo-formerror>
+        </kendo-formfield>
+    </div>
+
+    <kendo-formfield id="formFieldContiningPic" orientation="horizontal" showErrors="initial" showHints="initial"
+        class="kendoFormFieldofBrowseButtonPadding">
+        <label for="#" (click)="putFocusOnBrowseField()">Profile Picture:</label>
+        <kendo-fileselect #files id="pictureBrowseIp" [restrictions]="myRestrictions" formControlName="profilePicture"
+            [multiple]="false">
+        </kendo-fileselect>
+    </kendo-formfield>
+
+
+    <div class="bc">
+        <button kendoButton type="submit" [disabled]="!profileForm.valid" class="submitButton" id="submitButton"
+            fillMode="outline">
+            Submit
+        </button>
+        <a routerLink="/list">Back to Student List</a>
+    </div>
+</form>

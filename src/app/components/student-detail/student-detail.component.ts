@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { StudentService } from '../student.service';
-import { Student } from '../Student';
+import { StudentService } from '../../services/student.service';
+import { studentFromDB } from '../../services/Student';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-student-detail',
@@ -10,7 +11,8 @@ import { Student } from '../Student';
   styleUrls: ['./student-detail.component.css']
 })
 export class StudentDetailComponent implements OnInit {
-  student!:Student;
+  student!: studentFromDB;
+
   constructor(
     private route: ActivatedRoute,
     private studentService: StudentService,
@@ -20,17 +22,29 @@ export class StudentDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getStudent();
   }
-  getStudent(){
-    const id = this.route.snapshot.paramMap.get('Id');
-    this.student = this.studentService.getStudent(id);
-    console.log(this.student)
+
+  getStudent() {
+    this.route.data.pipe(
+      map(data => data?.['fetchedStudent'])
+    ).subscribe((x) => {
+      this.student = x as studentFromDB;
+    })
   }
+
   goBack(): void {
     this.location.back();
   }
-  deleteStudent(id:string){
-    this.studentService.deleteStudent(id)
-    this.goBack()
+
+  deleteStudent(id: string) {
+    this.studentService.delStudentFromDB(id).subscribe(
+      (x) => {
+        if (x.status === 200) {
+          this.goBack();
+        } else {
+          alert(x.message);
+        }
+      }
+    )
   }
 
 }
