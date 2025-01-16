@@ -26,8 +26,8 @@ export class StudentDetailComponent implements OnInit {
   getStudent() {
     this.route.data.pipe(
       map(data => data?.['fetchedStudent'])
-    ).subscribe((x) => {
-      this.student = x as studentFromDB;
+    ).subscribe((student) => {
+      this.student = student as studentFromDB;
     })
   }
 
@@ -36,12 +36,12 @@ export class StudentDetailComponent implements OnInit {
   }
 
   deleteStudent(id: string) {
-    this.studentService.delStudentFromDB(id).subscribe(
-      (x) => {
-        if (x.status === 200) {
+    this.studentService.deleteStudentFromDB(id).subscribe(
+      (deleteResult) => {
+        if (deleteResult.status === 200) {
           this.goBack();
         } else {
-          alert(x.message);
+          alert(deleteResult.message);
         }
       }
     )

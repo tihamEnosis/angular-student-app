@@ -11,7 +11,7 @@ export interface studentFromDB{
     updatedAt: string;
 }
 
-export interface deleteHttpResponse {
+export interface customHttpResponse {
     status:number;
     message:string;
 }

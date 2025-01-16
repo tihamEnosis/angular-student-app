@@ -1,15 +1,15 @@
-div{
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-p{
+p {
     width: auto;
 }
 
-span{
+span {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -18,7 +18,22 @@ span{
     align-self: flex-start;
 }
 
-.detailsPageLabel{
+.detailsPageElementContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.detailsPageElementContainer img {
+    max-width: 220px;
+}
+
+.detailsPageLabel {
     display: flex;
     font-family: sans-serif;
     font-size: large;
@@ -28,7 +43,7 @@ span{
     justify-content: center;
 }
 
-.detailsPageTextBox{
+.detailsPageTextBox {
     position: relative;
     align-self: flex-end;
     background-color: white;
@@ -39,12 +54,12 @@ span{
     font-family: 'Times New Roman', Times, serif;
 }
 
-.detailsPageButton{
+.detailsPageButton {
     width: 70px;
     margin-right: 15px;
 }
 
-.infoContainer{
+.infoContainer {
     display: block;
     position: relative;
     width: 100%;

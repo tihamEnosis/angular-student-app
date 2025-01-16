@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable, of, EMPTY } from 'rxjs';
 import { catchError, delay } from 'rxjs/operators';
 import { StudentService } from './student.service';
-import { deleteHttpResponse, studentFromDB } from './Student';
+import { customHttpResponse, studentFromDB } from './Student';
 
 @Injectable({
     providedIn: "root",

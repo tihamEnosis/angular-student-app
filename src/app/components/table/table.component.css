@@ -1,11 +1,37 @@
-#srcbar {
+.listPageContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.kendoGrid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+#searchField {
     padding-left: 20px;
     padding-right: 20px;
     width: 300px;
 }
 
-td {
-    width: 100px;
+.createNewStudentButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    margin-top: 15px;
+    width: 200px;
+    text-decoration: none;
 }
 
 .marginTop15px {

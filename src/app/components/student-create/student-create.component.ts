@@ -15,7 +15,7 @@ import { FileRestrictions } from '@progress/kendo-angular-upload';
 export class StudentCreateComponent implements OnInit {
   student!: studentFromDB;
   profileForm!: FormGroup;
-  myRestrictions: FileRestrictions = {
+  fileRestrictions: FileRestrictions = {
     allowedExtensions: [".jpg", ".png", ".jpeg", ".avif"],
   };
 
@@ -29,17 +29,17 @@ export class StudentCreateComponent implements OnInit {
     this.profileForm = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
-        this.ckInvalidname()
+        this.nameValidityCheck()
       ]),
       lastName: new FormControl('', [
         Validators.required,
-        this.ckInvalidname()
+        this.nameValidityCheck()
       ]),
       gender: new FormControl('', [
-        this.ckInvalidgender()
+        this.genderValidityCheck()
       ]),
       age: new FormControl('', [
-        this.ckInvalidage()
+        this.ageValidityCheck()
       ]),
       profilePicture: new FormControl(null, Validators.required)
     })
@@ -49,17 +49,17 @@ export class StudentCreateComponent implements OnInit {
     this.profileForm = new FormGroup({
       firstName: new FormControl(this.student.firstName, [
         Validators.required,
-        this.ckInvalidname()
+        this.nameValidityCheck()
       ]),
       lastName: new FormControl(this.student.lastName, [
         Validators.required,
-        this.ckInvalidname()
+        this.nameValidityCheck()
       ]),
       gender: new FormControl(this.student.gender, [
-        this.ckInvalidgender()
+        this.genderValidityCheck()
       ]),
       age: new FormControl(this.student.age, [
-        this.ckInvalidage()
+        this.ageValidityCheck()
       ]),
       profilePicture: new FormControl(null, Validators.required)
     })
@@ -68,8 +68,8 @@ export class StudentCreateComponent implements OnInit {
   setInitialForm() {
     this.route.data.pipe(
       map(data => data?.['fetchedStudent'])
-    ).subscribe((x) => {
-      this.student = x as studentFromDB
+    ).subscribe((student) => {
+      this.student = student as studentFromDB
       if (this.student) {
         this.setNonEmptyForm();
       }
@@ -84,57 +84,51 @@ export class StudentCreateComponent implements OnInit {
     this.setInitialForm();
   }
 
-  get firstName() {
+  get firstNameFormControlGetter() {
     return this.profileForm.get('firstName');
   }
-  get lastName() {
+  get lastNameFormControlGetter() {
     return this.profileForm.get('lastName');
   }
-  get genderGtr() {
+  get genderFormControlGetter() {
     return this.profileForm.get('gender');
   }
-  get ageGetter() {
+  get ageFormControlGetter() {
     return this.profileForm.get('age');
-  }
-
-  onImagePicked(event: Event) {
-    const file = (event.target as HTMLInputElement).files;
-    if (file?.length !== 0) {
-      this.profileForm.patchValue({ profilePicture: file });
-    } else {
-      this.profileForm.patchValue({ profilePicture: null });
-    }
   }
 
   onSubmit() {
     if (confirm((this.student) ? "Are you sure you want to update the student?" : "Are you sure you want to create a new student?")) {
       const update = (this.student !== null) && (this.student !== undefined);
+
       const pF = this.profileForm.value;
-      let file = pF.profilePicture[0];
       const formData = new FormData();
+
       formData.append('firstName', pF.firstName.trim());
       formData.append('lastName', pF.lastName.trim());
       formData.append('age', pF.age as string);
       formData.append('gender', pF.gender.trim());
-      formData.append('profilePicture', file);
+      formData.append('profilePicture', pF.profilePicture[0]);
+
       if (update) {
         this.studentService.updateStudentInDB(formData, this.student.id.toString()).subscribe(
-          (x) => {
-            if (x.status === 200) {
+          (updateResult) => {
+            if (updateResult.status === 200) {
               this.location.back();
             } else {
-              alert(x.message);
+              alert(updateResult.message);
             }
           }
         )
       }
+
       else {
         this.studentService.createStudentInDB(formData).subscribe(
-          (x) => {
-            if (x.status === 200) {
+          (createResult) => {
+            if (createResult.status === 200) {
               this.location.back();
             } else {
-              alert(x.message);
+              alert(createResult.message);
             }
           }
         )
@@ -142,24 +136,27 @@ export class StudentCreateComponent implements OnInit {
     }
   }
 
-  ckInvalidname(): ValidatorFn {
+  nameValidityCheck(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const forbidden = (control.value !== '') && (!(/^[A-Za-z0-9]+$/i.test(control.value?.trim())));
       return forbidden ? { invalidName: { value: control.value } } : null;
     };
   }
 
-  ckInvalidgender(): ValidatorFn {
+  genderValidityCheck(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
+      if(!control.value){
+        return { genderRequiredError: { value: 'age required' } };
+      }
       const forbidden = !((control.value?.trim() === 'Male') || (control.value?.trim() === 'Female'));
       return forbidden ? { invalidGender: { value: control.value } } : null;
     };
   }
 
-  ckInvalidage(): ValidatorFn {
+  ageValidityCheck(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
-        return { ageReq: { value: 'age required' } };
+        return { ageRequiredError: { value: 'age required' } };
       }
       if (!(Number.isInteger(control.value))) {
         return { invalidAgeType: { value: control.value } };
@@ -170,18 +167,17 @@ export class StudentCreateComponent implements OnInit {
   }
 
   putFocusOnBrowseField() {
-    let d = document.getElementById('pictureBrowseIp')?.childNodes[1].firstChild?.firstChild as HTMLElement;
+    let d = document.getElementById('pictureSelector')?.childNodes[1].firstChild?.firstChild as HTMLElement;
     d.focus();
     setTimeout(() => {
-      document.getElementById('pictureBrowseIp')?.classList.remove('ng-invalid');
-      document.getElementById('pictureBrowseIp')?.classList.remove('ng-touched');
-      document.getElementById('formFieldContiningPic')?.classList.remove('k-form-field-error');
-      document.getElementById('pictureBrowseIp')?.classList.add('ng-untouched');
+      document.getElementById('pictureSelector')?.classList.remove('ng-invalid');
+      document.getElementById('pictureSelector')?.classList.remove('ng-touched');
+      document.getElementById('pictureBrowserContainer')?.classList.remove('k-form-field-error');
+      document.getElementById('pictureSelector')?.classList.add('ng-untouched');
     }, 0);
   }
 
   putFocusOnGenderField() {
     document.getElementById('maleGenderInputField')?.focus();
   }
-
 }

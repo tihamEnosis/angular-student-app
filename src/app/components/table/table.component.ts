@@ -12,48 +12,48 @@ import { SortDescriptor } from '@progress/kendo-data-query';
 })
 
 export class TableComponent implements OnInit, OnDestroy {
-  public defaultSort: SortDescriptor[] = [
+  defaultSort: SortDescriptor[] = [
     { field: 'id', dir: 'asc' }
   ];
 
   students: studentFromDB[] = [];
-  srcName!:FormControl;
+  searchTerm!: FormControl;
 
   constructor(
     private studentService: StudentService
   ) { }
 
-  getStudents(){
-    this.studentService.getStudentsObservableFromDB().subscribe((x)=>{
-      this.students = x;
+  getStudents() {
+    this.studentService.getAllStudentsFromDB().subscribe((students) => {
+      this.students = students;
     })
   }
 
   ngOnInit(): void {
-    this.srcName = new FormControl(this.studentService.getFilter);
+    this.searchTerm = new FormControl(this.studentService.getFilter);
     this.getStudents();
   }
 
   private searchTerms = new Subject<string>();
 
-  onSrc(event:Event){
-    this.searchTerms.next(this.srcName.value);
+  onSearch(event: Event) {
+    this.searchTerms.next(this.searchTerm.value);
   }
 
-  sub = this.searchTerms.pipe(
+  searchTermsSubscription = this.searchTerms.pipe(
     debounceTime(300),
     distinctUntilChanged(),
   ).subscribe(
-    trm => {
-      this.studentService.setFilter = trm;
-      this.studentService.getStudentsObservableFromDB().subscribe((x)=>{
-        this.students = x;
+    term => {
+      this.studentService.setFilter = term;
+      this.studentService.getAllStudentsFromDB().subscribe((students) => {
+        this.students = students;
       })
     }
   )
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.searchTermsSubscription.unsubscribe();
   }
 
 }

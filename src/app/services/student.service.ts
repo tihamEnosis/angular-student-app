@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { studentFromDB, deleteHttpResponse } from './Student';
+import { studentFromDB, customHttpResponse } from './Student';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,25 +15,25 @@ export class StudentService {
     this.filter = val
   }
 
-  createStudentInDB(formData: FormData): Observable<deleteHttpResponse> {
-    return this.http.post<deleteHttpResponse>('http://localhost:8080/create', formData)
+  createStudentInDB(formData: FormData): Observable<customHttpResponse> {
+    return this.http.post<customHttpResponse>('http://localhost:8080/create', formData)
       .pipe(
         catchError((e) => {
-          return of({ status: e.status, message: e.error } as deleteHttpResponse)
+          return of({ status: e.status, message: e.error } as customHttpResponse)
         })
       )
   }
 
-  updateStudentInDB(formData: FormData, id: string): Observable<deleteHttpResponse> {
-    return this.http.put<deleteHttpResponse>('http://localhost:8080/update/' + id, formData)
+  updateStudentInDB(formData: FormData, id: string): Observable<customHttpResponse> {
+    return this.http.put<customHttpResponse>('http://localhost:8080/update/' + id, formData)
       .pipe(
         catchError((e) => {
-          return of({ status: e.status, message: e.error } as deleteHttpResponse)
+          return of({ status: e.status, message: e.error } as customHttpResponse)
         })
       )
   }
 
-  getStudentsObservableFromDB(): Observable<studentFromDB[]> {
+  getAllStudentsFromDB(): Observable<studentFromDB[]> {
     var searchParam = (this.filter === '') ? '' : `searchTerm=${this.filter}`;
     var sortBy = "", sortDirection = "";
     var sortParam = '';
@@ -65,14 +65,14 @@ export class StudentService {
     }
   }
 
-  delStudentFromDB(id: string): Observable<deleteHttpResponse> {
-    return this.http.delete<deleteHttpResponse>('http://localhost:8080/delete/' + id)
+  deleteStudentFromDB(id: string): Observable<customHttpResponse> {
+    return this.http.delete<customHttpResponse>('http://localhost:8080/delete/' + id)
       .pipe(
         catchError((e) => {
-          return of({ status: e.status, message: e.error } as deleteHttpResponse)
+          return of({ status: e.status, message: e.error } as customHttpResponse)
         })
       )
   }
 
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient) { }
 }

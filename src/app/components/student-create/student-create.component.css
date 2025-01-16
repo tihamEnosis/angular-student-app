@@ -1,4 +1,4 @@
-.mc{
+.formContainer {
     display: flex;
     position: relative;
     margin-top: 20px;
@@ -7,180 +7,44 @@
     height: 500px;
     min-width: 718px;
 }
-.mc h5{
-    font-family:"Whitefriars NF W01 Regular";
+
+.formContainer h5 {
+    font-family: "Whitefriars NF W01 Regular";
     font-weight: 180;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.mc span{
-    position: relative;
-    margin-bottom: 30px;
-}
-.mc span i{
-    font-size: 12px;
-    color: red;
-}
-#nameWarn, #addressWarn, #ratingWarn, #typeWarn, #picWarn,
-#firstNameWarn,
-#lastNameWarn,
-#genderWarn,
-#ageWarn{
-    position: absolute;
-    font-size: 12px;
-    left:225px;
-    top:35px;
-}
-#nameWarnmsg, #addressWarnmsg, #ratingWarnmsg, #typeWarnmsg, #picWarnmsg,
-#firstNameRequiredWarnmsg, #firstNameInvalidWarnmsg,
-#lastNameRequiredWarnmsg, #lastNameInvalidWarnmsg,
-#genderInvalidWarnmsg,
-#ageInvalidWarnmsg, #ageInvalidTypeWarnmsg{
-    position: absolute;
-    font-size: 11px;
-    color: red;
-    left:240px;
-    top:34px;
-}
-#picWarn{
-    top:42px;
-}
-#picWarnmsg{
-    top:41.5px;
-}
-.mc span label{
-    display: inline-flex;
-    box-sizing: border-box;
-    width: 80px;
-    margin-left: 100px;
-    margin-right: 40px;
-}
-.mc span label{
-    cursor: pointer;
-}
-.mc span input, .mc span select, .mc span div{
-    display: inline-block;
-    position: relative;
-    width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    font-family: serif;
-    font-size:smaller;
-    background-color: rgb(248, 239, 225);
-}
-.mc span input:focus{
-    border-top: 1.5px solid black;
-    border-left: 1.5px solid black;
-}
-.mc span select{
-    width: 440px;
-}
-.mc span input, .mc span select, .mc span div{
-    border-top: 1.5px solid rgb(124, 122, 122);
-    border-left: 1.5px solid rgb(124, 122, 122);
-    border-bottom: 0px;
-    border-right: 0px;
-    border-radius: 8px;
-    outline: none;
-}
-.mc span div{
-    padding: 0px;
-    padding-bottom: 0px;
-    width: auto;
-    display: flex;
-    position: relative;
-}
-#brwsbtn{
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    position: absolute;
-    left: 20px;
-    top:10px;
-    width: 55px;
-    padding-top: 2px;
-    padding-left: 8px;
-    font-size: 9px;
-    border: 1.5px solid rgb(160, 159, 159);
-    background-color: rgb(236, 228, 217);
-}
-#brwsfilenamecontainer{
-    display: flex;
-    position: absolute;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 9px;
-    top: 14px;
-    left: 79px;
-    width: auto;
-    height: auto;
-}
 
-#ippic{
-    display: inline;
-}
-
-#ippic:focus{
-    border-top: 1.5px solid black;
-    border-left: 1.5px solid black;
-}
-
-input[type="file"]::file-selector-button{
-    cursor: pointer;
-}
-
-#ipage::-webkit-inner-spin-button{
-    display: none;
-}
-
-.bc{
+.submitButtonContainer {
     display: flex;
     position: relative;
     height: 50px;
     float: right;
 }
-.bc button {
+
+.submitButtonContainer button {
     position: absolute;
-    top:5px;
+    top: 5px;
     width: 70px;
     height: 35px;
 }
-.bc a {
+
+.submitButtonContainer a {
     display: flex;
     position: absolute;
     right: 85px;
-    top:80px;
+    top: 80px;
     color: rgb(109, 193, 227);
     font-family: "Whitefriars NF W01 Regular";
     font-size: 9.5px;
 }
-.submitButton{
-    right: 85px ;
-}
-.sbbtnEn{
-    background-color: rgb(13, 211, 13);
-}
-.sbbtnEn:hover{
-    cursor: pointer;
-}
-.rsbtn:hover{
-    background-color: rgb(237, 154, 0);
-}
-.rsbtn{
-    right: 170px ;
-    background-color: rgb(244, 179, 60);
-    border-bottom: 1.5px solid rgb(143, 138, 138);
-    border-right: 1.5px solid rgb(143, 138, 138);
-    border-top: 1.5px solid rgb(251, 232, 235);
-    border-left: 1.5px solid rgb(251, 232, 235);
-}
-#male:focus, #female:focus{
-    outline: 2px solid rgb(84, 134, 240);
+
+.submitButton {
+    right: 85px;
 }
 
-
-kendo-formfield label:hover{
+kendo-formfield label:hover {
     cursor: pointer;
 }
 
@@ -189,15 +53,16 @@ kendo-formfield label:hover{
     height: 48px;
 }
 
-.paddingTop10px{
+.paddingTop10px {
     padding-top: 10px;
 }
-.paddingLeftRight50px{
+
+.paddingLeftRight50px {
     padding-left: 50px;
     padding-right: 50px;
 }
 
-.kendoFormFieldofBrowseButtonPadding{
+.kendoFormFieldofBrowseButtonPadding {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 50px;
